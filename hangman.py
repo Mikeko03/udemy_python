@@ -37,7 +37,3 @@ while alive:
         if "_" not in lst:
             print("\n\n ------------------\n |YOU WON, HURAAAA|\n ------------------")
             alive = False
-        
-
-
-#pint(lst)
