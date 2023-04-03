@@ -23,23 +23,22 @@ def number_generator():
 
 
 def game():
-    number_of_turns = set_dif()
-    guessed_number = number_generator()
+    number_of_turns, guessed_number= set_dif(), number_generator()
     print(f"psst{guessed_number}")
     print(f"Turns left {number_of_turns}\n")
-    guess = guesser()
-    while guessed_number != guess:
+    while number_of_turns > 0:
+        guess = guesser()
         if guess > guessed_number:
-            print("Too high")
-            number_of_turns -=1
-            print(f"Turns left {number_of_turns}\n")
-            guess = guesser()
+            print("Too HIGH")
+            print(f"You have {number_of_turns} turns left\n")
         elif guess < guessed_number:
-            print("Too low")
-            number_of_turns -=1
-            print(f"Turns left {number_of_turns}\n")
-            guess = guesser()
-    print("You guessed Right!!")
+            print("Too LOW")
+            print(f"You have {number_of_turns} turns left\n")
+        else:
+            print("You guessed RIGHT")
+            return
+        number_of_turns-=1
+    print("You lost, all turns are gone")
         
 if __name__ == "__main__":
     game()
