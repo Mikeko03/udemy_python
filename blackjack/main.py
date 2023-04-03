@@ -34,17 +34,23 @@ def deal_player():
             cont = False
         else:
             pass
+
 def deal_dealer():
     cont = True
-    while cont or sum(dealer_hand)<21:
-        if len(dealer_hand) < 2:
+    while cont:
+        if sum(dealer_hand) > 20:
             dealer = draw()
             dealer_hand.append(dealer[1])
-            print(f"You got {dealer[0]}")
-        else:
-            print(f"Sum of dealer hand is {sum(dealer_hand)}")
-        
-            
+            print(sum(dealer_hand))
+            if len(dealer_hand)> 1:
+                print(f"Sum of his hand is {sum(dealer_hand)}")
+        elif sum(dealer_hand) ==20 or sum(dealer_hand) ==21:
+            print("Dealer has enough")
+            cont = False
+        elif sum(dealer_hand) > 21:
+            print("Dealer BUST!")
+            cont = False
+          
 
 
 if __name__ == "__main__":
