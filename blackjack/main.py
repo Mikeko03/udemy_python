@@ -2,60 +2,79 @@ import random
 from cards import list_of_cards, dict_of_cards
 
 
+#draw a cards from the deck (not real deck)
 def draw():
     draw_card = random.choice(list_of_cards)
     return (draw_card, dict_of_cards[draw_card])
 
 
+# deals card to player and show what card it is
 def deal_player():
-    cont = True
-    while cont:
-        if len(player_hand) < 2:
-            player = draw()
-            player_hand.append(player[1])
-            print(f"You got {player[0]}")
-        else:
-            print(f"Sum of your hand is {sum(player_hand)}")
-            ans = input("Would you like another card? (Yes/No) ").lower()
-            while ans not in ("yes", "y", "no", "n"):
-                ans = input("Invalid input. Would you like another card? (Yes/No) ").lower()
-            if ans in ("yes", "y"):
-                player = draw()
-                player_hand.append(player[1])
-                print(f"You got {player[0]}")
-            else:
-                print(f"You stopped. Sum of your hand is {sum(player_hand)}")
-                cont = False
-        if sum(player_hand) == 21:
-            print("Blackjack! Congratulations!")
-            cont = False
-        elif sum(player_hand) > 21:
-            print(f"Sum of your hand is {sum(player_hand)}. You bust!")
-            cont = False
-        else:
-            pass
+    player = draw()
+    player_cards.append(player[0])
+    player_sum.append(player[1])
+    return player_cards,player_sum
 
+
+# deals card to dealer and show what card it is
 def deal_dealer():
-    cont = True
-    while cont:
-        if sum(dealer_hand) > 20:
-            dealer = draw()
-            dealer_hand.append(dealer[1])
-            print(sum(dealer_hand))
-            if len(dealer_hand)> 1:
-                print(f"Sum of his hand is {sum(dealer_hand)}")
-        elif sum(dealer_hand) ==20 or sum(dealer_hand) ==21:
-            print("Dealer has enough")
-            cont = False
-        elif sum(dealer_hand) > 21:
-            print("Dealer BUST!")
-            cont = False
-          
+    dealer = draw()
+    dealer_cards.append(dealer[0])
+    dealer_sum.append(dealer[1])
+    return dealer_cards,dealer_sum
+
+
+# main function
+def play_blackjack():
+    ## first turn deals 2 cards
+    for _ in range(2):
+        deal_player()
+        deal_dealer()
+
+    print(f"Value of players hand is {sum(player_sum)}")
+    print(f"CHEAT: value of dealers hand is {sum(dealer_sum)}\n")
+    
+    
+    # dealing cards to player
+    while True:
+        # asks for what to do next
+        ans = input("what to do next: (hit, stand)\n").lower()
+        # hit == deals more cards
+        if ans =="hit":
+            deal_player()
+            print(f"Value of players hand is {sum(player_sum)}\n")
+            if sum(player_sum)>21:
+                print("Bust dealer wins\n")
+                return
+        # stand enough cards
+        elif ans == "stand":
+            break
+        else:
+            print("choise MOFO\n")
+    
+    while sum(dealer_sum)<17:
+        deal_dealer()
+        print(f"CHEAT: value of dealer hand is {sum(dealer_sum)}\n")
+
+        if sum(dealer_sum)>21:
+            print("Bust player wins\n")
+            return
+
+    pl = sum(player_sum)
+    dl = sum(dealer_sum)
+
+    if pl < dl:
+        print("dealer wins\n")
+    elif pl > dl:
+        print("player wins\n")
+    else:
+        print("tie\n")
 
 
 if __name__ == "__main__":
-    player_hand = []
-    dealer_hand = []
-
-    #deal_player()
-    deal_dealer()
+    # initialize empty hands for lists of all the cards that dealer and player have
+    player_cards = []
+    dealer_cards = []
+    player_sum = []
+    dealer_sum = []
+    play_blackjack()

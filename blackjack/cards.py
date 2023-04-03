@@ -1,6 +1,6 @@
 list_of_cards = ["Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"]
 dict_of_cards ={
-    "Ace":10,
+    "Ace":11,
     "2":2,
     "3":3,
     "4":4,
