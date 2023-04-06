@@ -4,12 +4,14 @@ timmy = Turtle()
 
 print(timmy)
 
-my_screen = Screen()
-timmy.shape("turtle")
-timmy.color("blue")
+timmy.forward(100)
+timmy.left(90)
+timmy.forward(100)
+timmy.left(90)
+timmy.forward(100)
+timmy.left(90)
+timmy.forward(100)
+timmy.left(90)
 
-while True:
-    timmy.forward(100)
-    timmy.left(75)
-
-my_screen.exitonclick()
+screen = Screen()
+screen.exitonclick()
