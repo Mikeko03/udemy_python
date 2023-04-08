@@ -22,7 +22,7 @@ with open(letter) as file:
 
 
 for idx,i in enumerate(names_g(names)):
-    file_path = names_g(names)[idx] + "_invite.txt"
+    file_path = "Ready_to_Send/"+ names_g(names)[idx] + "_invite.txt"
    
     with open(file_path,"w") as f:
         f.write(ffs.replace("[name]",i))
