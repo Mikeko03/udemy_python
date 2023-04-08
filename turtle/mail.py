@@ -25,4 +25,4 @@ for idx,i in enumerate(names_g(names)):
     file_path = names_g(names)[idx] + "_invite.txt"
    
     with open(file_path,"w") as f:
-        f.write(ffs.replace("[name],",i))
+        f.write(ffs.replace("[name]",i))
