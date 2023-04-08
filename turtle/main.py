@@ -1,17 +1,18 @@
-from turtle import Turtle, Screen
+class Animal:
+    def __init__(self) -> None:
+        self.number_of_eyes = 2
 
-timmy = Turtle()
+    def breathe(self):
+        print("Inhale, Exhale")
 
-print(timmy)
+class Fish(Animal):
+    def __init__(self):
+        super().__init__()
 
-timmy.forward(100)
-timmy.left(90)
-timmy.forward(100)
-timmy.left(90)
-timmy.forward(100)
-timmy.left(90)
-timmy.forward(100)
-timmy.left(90)
+    def breathe(self):
+        super().breathe()
+        print("Underwater")
 
-screen = Screen()
-screen.exitonclick()
+carp = Fish()
+
+carp.breathe()
