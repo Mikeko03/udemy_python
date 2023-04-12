@@ -1,11 +1,13 @@
 import smtplib, json
 
+
 with open("login_info.json","r") as f:
     data = json.load(f)
 
 
 gmail_user = data["gmail"]["email"]
 gmail_pass = data["gmail"]["password"]
+
 
 yahoo_user = data["yahoo"]["email"]
 yahoo_pass = data["yahoo"]["password"]
@@ -24,3 +26,4 @@ except:
     pass
 else:
     print("email sent")
+
