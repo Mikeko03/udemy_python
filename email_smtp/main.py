@@ -17,5 +17,9 @@ connection.starttls() #securing email connection
 connection.login(user = gmail_user, password=gmail_pass)
 #connection.login(user = yahoo_user, password=yahoo_pass)
 
-
-connection.sendmail(from_addr=gmail_user, to_addrs=yahoo_user, msg="Hello2")
+try:
+    connection.sendmail(from_addr=gmail_user, to_addrs=yahoo_user, msg="Hello2")
+except:
+    pass
+else:
+    print("email sent")
